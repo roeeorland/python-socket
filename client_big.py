@@ -15,7 +15,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
     while True:
    #     s.connect((HOST, PORT))
-        time.sleep(random.randrange(15)
+        time.sleep(random.randrange(15))
         with open('input.txt', 'rb') as f:
             l = f.read(4096)
             i = 1
