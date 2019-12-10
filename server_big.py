@@ -8,7 +8,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--port")
 args = parser.parse_args()
 
-HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
+HOST = '0.0.0.0'  # Standard loopback interface address (localhost)
 PORT = int(args.port) #65432     # Port to listen on (non-privileged ports are > 1023)
 print(f"port is:{PORT}")
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -31,20 +31,24 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 f = open('received_file.txt', 'ab')
                 #f.seek(0)
                 f.write(data)
-                if data[0] == 116:
+                print(data[0])
+                if sum(data) > 0 :
                     print('complete')
                     f.close()
-                    time.sleep(25)
-                    try:
+                    time.sleep(5)
+                    #time.sleep(25)
+                   # try:
                         # f.close()
-                        os.remove('received_file.txt')
-                        with open('received_file.txt', 'wb') as out:
-                            out.seek(1024 - 1)
-                            out.write(b"\0")
+                
+                    os.remove('received_file.txt')
+                    with open('received_file.txt', 'wb') as out:
+                        out.seek(1024 - 1)
+                        out.write(b"\0")
+                   # time.sleep(25)
                         # with open('received_file.txt', 'wb') as f:
                         #     continue
-                    except:
-                        print('file not there')
+                    #except:
+                     #   print('file not there')
                     #except:
                      #   continue
                 #os.remove('received_file.txt')
