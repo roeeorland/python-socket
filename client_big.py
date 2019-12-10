@@ -10,7 +10,7 @@ parser.add_argument("--host")
 args = parser.parse_args()
 HOST = args.host  # '127.0.0.1'  # The server's hostname or IP address
 PORT = int(args.port)  #12345        # The port used by the server
-
+print(f"host is: {HOST}")
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
     while True:
@@ -27,6 +27,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             #s.sendall(b'Hello, world')
             s.send(b'transfer complete')
             print('file transfer complete')
+            time.sleep(15)
             #data = s.recv(1024)
         #print('client received')
        # s.close()
